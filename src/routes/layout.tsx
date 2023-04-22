@@ -1,8 +1,8 @@
 import { component$, Slot } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { routeLoader$, useLocation } from '@builder.io/qwik-city';
 
-import Header from '~/components/starter/header/header';
 import Footer from '~/components/starter/footer/footer';
+import Header from '~/components/starter/header/header';
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {
@@ -11,13 +11,14 @@ export const useServerTimeLoader = routeLoader$(() => {
 });
 
 export default component$(() => {
+  const location = useLocation();
   return (
     <div class="page">
       <main>
-        <Header />
+        <Header path={location.url.pathname} />
         <Slot />
       </main>
-      <div class="section dark">
+      <div class="section">
         <div class="container">
           <Footer />
         </div>

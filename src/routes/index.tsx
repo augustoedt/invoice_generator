@@ -1,117 +1,83 @@
 import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 
-import Counter from '~/components/starter/counter/counter';
-import Hero from '~/components/starter/hero/hero';
-import Infobox from '~/components/starter/infobox/infobox';
-import Starter from '~/components/starter/next-steps/next-steps';
 
 export default component$(() => {
   return (
-    <>
-      <Hero />
-
-      <div class="section bright">
-        <div class="container center">
-          <Starter />
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="container center">
-          <h3>
-            You can <b>count</b> on me
-          </h3>
-          <Counter />
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="container topics">
-          <Infobox>
-            <div q:slot="title" class="icon icon-cli">
-              CLI Commands
-            </div>
-            <>
-              <p>
-                <code>npm run dev</code>
-                <br />
-                Starts the development server and watches for changes
-              </p>
-              <p>
-                <code>npm run preview</code>
-                <br />
-                Creates production build and starts a server to preview it
-              </p>
-              <p>
-                <code>npm run build</code>
-                <br />
-                Creates production build
-              </p>
-              <p>
-                <code>npm run qwik add</code>
-                <br />
-                Runs the qwik CLI to add integrations
-              </p>
-            </>
-          </Infobox>
-
-          <div>
-            <Infobox>
-              <div q:slot="title" class="icon icon-apps">
-                Example Apps
-              </div>
-              <p>
-                Have a look at the <a href="/demo/flower">Flower App</a> or the{' '}
-                <a href="/demo/todolist">Todo App</a>.
-              </p>
-            </Infobox>
-
-            <Infobox>
-              <div q:slot="title" class="icon icon-community">
-                Community
-              </div>
-              <ul>
-                <li>
-                  <span>Questions or just want to say hi? </span>
-                  <a href="https://qwik.builder.io/chat" target="_blank">
-                    Chat on discord!
-                  </a>
-                </li>
-                <li>
-                  <span>Follow </span>
-                  <a href="https://twitter.com/QwikDev" target="_blank">
-                    @QwikDev
-                  </a>
-                  <span> on Twitter</span>
-                </li>
-                <li>
-                  <span>Open issues and contribute on </span>
-                  <a href="https://github.com/BuilderIO/qwik" target="_blank">
-                    GitHub
-                  </a>
-                </li>
-                <li>
-                  <span>Watch </span>
-                  <a href="https://qwik.builder.io/media/" target="_blank">
-                    Presentations, Podcasts, Videos, etc.
-                  </a>
-                </li>
-              </ul>
-            </Infobox>
+    <section class="text-gray-600 body-font">
+      <div class="container px-5 py-24 mx-auto">
+        <div class="text-center mb-20">
+          <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">Raw Denim Heirloom Man Braid</h1>
+          <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto text-gray-500s">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug.</p>
+          <div class="flex mt-6 justify-center">
+            <div class="w-16 h-1 rounded-full bg-indigo-500 inline-flex"></div>
           </div>
         </div>
+        <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6">
+          <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
+            <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+              </svg>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Shooting Stars</h2>
+              <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.</p>
+              <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
+            <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
+                <circle cx="6" cy="6" r="3"></circle>
+                <circle cx="6" cy="18" r="3"></circle>
+                <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
+              </svg>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-gray-900 text-lg title-font font-medium mb-3">The Catalyzer</h2>
+              <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.</p>
+              <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="p-4 md:w-1/3 flex flex-col text-center items-center">
+            <div class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-5 flex-shrink-0">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10" viewBox="0 0 24 24">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </div>
+            <div class="flex-grow">
+              <h2 class="text-gray-900 text-lg title-font font-medium mb-3">Neptune</h2>
+              <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug VHS try-hard.</p>
+              <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                  <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button> */}
       </div>
-    </>
+    </section>
   );
 });
 
 export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
+  title: 'Invoice App',
   meta: [
     {
       name: 'description',
-      content: 'Qwik site description',
+      content: 'Invoice Qwik App',
     },
   ],
 };
