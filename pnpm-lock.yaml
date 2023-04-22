@@ -6,6 +6,7 @@ specifiers:
   '@types/better-sqlite3': ^7.6.4
   '@types/eslint': 8.37.0
   '@types/node': ^18.15.9
+  '@types/uuid': ^9.0.1
   '@typescript-eslint/eslint-plugin': 5.57.1
   '@typescript-eslint/parser': 5.57.1
   autoprefixer: ^10.4.13
@@ -41,6 +42,7 @@ devDependencies:
   '@types/better-sqlite3': 7.6.4
   '@types/eslint': 8.37.0
   '@types/node': 18.15.11
+  '@types/uuid': 9.0.1
   '@typescript-eslint/eslint-plugin': 5.57.1_jwd5v5vphzanfmajybkjq25ld4
   '@typescript-eslint/parser': 5.57.1_vwh6htx42aidho2qgfca5u5rwm
   autoprefixer: 10.4.14_postcss@8.4.22
@@ -519,6 +521,10 @@ packages:
 
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
+    dev: true
+
+  /@types/uuid/9.0.1:
+    resolution: {integrity: sha512-rFT3ak0/2trgvp4yYZo5iKFEPsET7vKydKF+VRCxlQ9bpheehyAJH89dAkaLEq/j/RZXJIqcgsmPJKUP1Z28HA==}
     dev: true
 
   /@typescript-eslint/eslint-plugin/5.57.1_jwd5v5vphzanfmajybkjq25ld4:
