@@ -6,9 +6,6 @@
   },
   "private": true,
   "scripts": {
-    "generate": "drizzle-kit generate:sqlite",
-    "dbup": "drizzle-kit up:sqlite",
-    "dbcheck": "drizzle-kit check:sqlite",
     "build": "qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
@@ -33,6 +30,7 @@
     "@typescript-eslint/eslint-plugin": "5.57.1",
     "@typescript-eslint/parser": "5.57.1",
     "autoprefixer": "^10.4.13",
+    "better-sqlite3": "8.0.1",
     "drizzle-kit": "^0.17.5",
     "eslint": "8.37.0",
     "eslint-plugin-qwik": "0.102.0",
@@ -46,11 +44,10 @@
     "vite-tsconfig-paths": "3.5.0"
   },
   "dependencies": {
-    "better-sqlite3": "^8.3.0",
     "daisyui": "^2.51.5",
     "drizzle-orm": "^0.24.4",
     "drizzle-zod": "^0.3.2",
-    "uuid": "^9.0.0",
+    "install": "^0.13.0",
     "zod": "^3.21.4"
   }
 }

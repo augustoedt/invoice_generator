@@ -1,7 +1,7 @@
 import { component$ } from "@builder.io/qwik";
 
 export default component$(() => {
-    return (<div class="flex gap-2 px-10">
-        <div class="text-lg font-bold">Invoice</div>
+    return (<div class="container px-5 py-12 mx-auto">
+        
     </div>);
 });

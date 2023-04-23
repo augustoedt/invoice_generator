@@ -1,31 +1,21 @@
 import { component$, useStore } from "@builder.io/qwik";
 import { Form, routeAction$, routeLoader$ } from "@builder.io/qwik-city";
-import { randomUUID } from "crypto";
-import { eq } from "drizzle-orm";
-import { db } from "~/db/db";
 import type { Customer, InsertCustomer } from "~/db/schemas/customers";
-import { customers } from "~/db/schemas/customers";
+import { deleteCostumer, getAllCostumers, saveCostumer, updateCostumer } from "~/lib/api/customers";
 
 export const useAddCustomer = routeAction$(async (data) => {
-    // This will only run on the server when the user submits the form (or when the action is called programatically)
-    console.log({
-        name: data.name,
-        company: data.company,
-    });
-    db.insert(customers).values({
-        id: randomUUID(),
-        name: data.name,
-        company: data.company,
-        phone: data.phone,
-    } as InsertCustomer).returning().get();
+
+    await saveCostumer(data as Omit<InsertCustomer, "id">);
 
     return {
         success: true,
     };
+
 });
 
 export const useDeleteCustomer = routeAction$(async (data) => {
-    db.delete(customers).where(eq(customers.id, data.id as string)).run()
+    // db.delete(customers).where(eq(customers.id, data.id as string)).run()
+    await deleteCostumer(data.id as string);
     return {
         success: true,
     };
@@ -33,16 +23,29 @@ export const useDeleteCustomer = routeAction$(async (data) => {
 
 export const useUpdateCustomer = routeAction$(async (data) => {
     const id = data.id as string;
-    db.update(customers).set({ company: data.company as string, name: data.name as string, phone: data.phone as string }).where(eq(customers.id, id)).returning().all()
+    await updateCostumer(data as Customer);
     return {
         success: true,
+        data: { id }
     };
 });
 
 export const useCostumers = routeLoader$(async () => {
-    // This code runs only on the server, after every navigation
-    const allCustomers = db.select().from(customers).all();
-    return allCustomers;
+    try {
+        const allCustomers = (await (await getAllCostumers()).json()) as unknown as Customer[];
+        return {
+            success: true,
+            data: allCustomers,
+        };
+    } catch (error) {
+        console.log((error));
+        return {
+            error: {
+                message: 'Error loading customers',
+            }
+        }
+    }
+
 });
 
 const initialCostumer: Customer = {
@@ -62,9 +65,9 @@ export default component$(() => {
     const deleteCustomerAction = useDeleteCustomer();
     const updateUserAction = useUpdateCustomer();
 
-    return <section class="text-gray-600 body-font">
+    return <section class="text-gray-600 body-font w-full">
         <div class="container px-5 py-12 mx-auto">
-            <label for="create-modal" class="btn btn-primary">Create</label>
+            <label for="create-modal" class={`btn btn-primary ${allCostumers.value.error && "btn-disabled"}`}>Create</label>
             <Form action={addUserAction}>
                 <input type="checkbox" id="create-modal" class="modal-toggle" />
                 <div class="modal">
@@ -91,7 +94,7 @@ export default component$(() => {
                     </div>
                 </div>
             </Form>
-            <table class="table table-striped mt-6 w-full">
+            {allCostumers.value.success && <table class="table table-striped mt-6 w-full">
                 <thead>
                     <tr>
                         <td scope="col">Actions</td>
@@ -101,7 +104,7 @@ export default component$(() => {
                     </tr>
                 </thead>
                 <tbody>
-                    {allCostumers.value.map((customer: Customer, i) => <tr key={i}>
+                    {allCostumers.value.data.map((customer: Customer, i) => <tr key={i}>
                         <td><div class="flex gap-2 justify-start">
                             <Form action={deleteCustomerAction}>
                                 <input hidden type="text" name="id" value={customer.id} />
@@ -114,7 +117,14 @@ export default component$(() => {
                         <td>{customer.phone}</td>
                     </tr>)}
                 </tbody>
-            </table>
+            </table>}
+            {allCostumers.value.error
+                && <div class="alert shadow-lg mt-6">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>{allCostumers.value.error.message}</span>
+                    </div>
+                </div>}
             <Form action={updateUserAction}>
                 <input type="checkbox" id="update-modal" class="modal-toggle" />
                 <div class="modal">
@@ -125,15 +135,13 @@ export default component$(() => {
                             <label class="text-gray-500 font-semibold mb-1" for="name">Name</label>
                             <input id="name" name="name" type="text" placeholder="Delegate name" class="input input-bordered input-primary w-full"
                                 value={currentCostumer.value.name}
-                                onChange$={e => currentCostumer.value.name = e.target.value}
-                            />
+                                onChange$={e => currentCostumer.value.name = e.target.value} />
                         </div>
                         <div class="flex flex-col mb-4">
                             <label class="text-gray-500 font-semibold mb-1" for="company">Company</label>
                             <input id="company" name="company" type="text" placeholder="Company name" class="input input-bordered input-primary w-full"
                                 value={currentCostumer.value.company}
-                                onChange$={e => currentCostumer.value.company = e.target.value}
-                            />
+                                onChange$={e => currentCostumer.value.company = e.target.value} />
                         </div>
                         <div class="flex flex-col mb-4">
                             <label class="text-gray-500 font-semibold mb-1" for="phone">Phone</label>
@@ -143,7 +151,7 @@ export default component$(() => {
                             />
                         </div>
                         <div class="modal-action">
-                            <label for="update-modal" class="btn btn-outline">Close</label>
+                            <label onClick$={() => currentCostumer.value = initialCostumer} for="update-modal" class="btn btn-outline">Close</label>
                             <button type="submit">
                                 <label for="update-modal" class="btn btn-primary">Create</label>
                             </button>
