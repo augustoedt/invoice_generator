@@ -8,7 +8,7 @@ export const sideLinks = [
         label: "Customers"
     },
     {
-        href: "app/invoce",
+        href: "/app/invoice",
         label: "Invoice"
     },
 ]
