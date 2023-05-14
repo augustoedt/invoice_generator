@@ -1,0 +1,8 @@
+name = "invoice_generator"
+main = "src/index.ts"
+compatibility_date = "2023-05-14"
+
+[[ d1_databases ]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "invoice"
+database_id = "d17a8d81-4106-4f3e-9700-c0bb6740bbd2"

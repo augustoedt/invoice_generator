@@ -1,6 +1,6 @@
 import { Customer, InsertCustomer } from "~/db/schemas/customers";
 
-const base: string = 'http://0.0.0.0:8787'
+const base: string = import.meta.env.WORKER_URL+"/api";
 
 export async function getAllCostumers (){
     return await fetch(`${base}/customers`);
