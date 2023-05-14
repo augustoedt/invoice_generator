@@ -35,7 +35,6 @@
     "@typescript-eslint/eslint-plugin": "5.57.1",
     "@typescript-eslint/parser": "5.57.1",
     "autoprefixer": "^10.4.13",
-    "better-sqlite3": "8.0.1",
     "drizzle-kit": "^0.17.5",
     "eslint": "8.37.0",
     "eslint-plugin-qwik": "0.102.0",
